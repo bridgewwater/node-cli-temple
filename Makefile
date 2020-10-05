@@ -1,0 +1,52 @@
+.PHONY: test check clean build dist all
+
+# each tag change this
+ENV_DIST_VERSION := 1.0.0
+
+# change base namespace
+ENV_PROJECT_NAME=tudm-cli
+
+ENV_ROOT ?= $(shell pwd)
+ENV_MODULE_FOLDER ?= ${ENV_ROOT}
+ENV_MODULE_MAKE_FILE ?= ${ENV_MODULE_FOLDER}/Makefile
+ENV_MODULE_MANIFEST = ${ENV_MODULE_FOLDER}/package.json
+ENV_MODULE_CHANGELOG = ${ENV_MODULE_FOLDER}/CHANGELOG.md
+
+utils:
+	node -v
+	npm -v
+	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli
+
+versionHelp:
+	@git fetch --tags
+	@echo "project base info"
+	@echo " project name         : ${ENV_PROJECT_NAME}"
+	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
+	@echo ""
+	@echo "=> please check to change version, now is [ ${ENV_DIST_VERSION} ]"
+	@echo "-> check at: ${ENV_MODULE_MAKE_FILE}:4"
+	@echo " $(shell head -n 4 ${ENV_MODULE_MAKE_FILE} | tail -n 1)"
+	@echo "-> check at: ${ENV_MODULE_MANIFEST}:3"
+	@echo " $(shell head -n 3 ${ENV_MODULE_MANIFEST} | tail -n 1)"
+
+tagBefore: versionHelp
+	@cd ${ENV_MODULE_FOLDER} && conventional-changelog -i ${ENV_MODULE_CHANGELOG} -s --skip-unstable
+	@echo ""
+	@echo "=> new CHANGELOG.md at: ${ENV_MODULE_CHANGELOG}"
+	@echo "place check all file, then can add tag like this!"
+	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
+
+help:
+	@echo "python package makefile template"
+	@echo " project name         : ${ENV_PROJECT_NAME}"
+	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
+	@echo ""
+	@echo "  first install node and install utils as"
+	@echo "$$ make utils               ~> npm install git cz"
+	@echo "  1. then write git commit log, can replace [ git commit -m ] to [ git cz ]"
+	@echo "  2. generate CHANGELOG.md doc: https://github.com/commitizen/cz-cli#conventional-commit-messages-as-a-global-utility"
+	@echo ""
+	@echo "  then you can generate CHANGELOG.md as"
+	@echo "$$ make versionHelp         ~> print version when make tageBefore will print again"
+	@echo "$$ make tagBefore           ~> generate CHANGELOG.md and copy to module folder"
+	@echo ""

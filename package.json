@@ -1,0 +1,37 @@
+{
+  "name": "node-cli-temple",
+  "version": "1.0.0",
+  "bin": {
+    "node-cli-temple": "./bin/node-cli-temple.js"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.10",
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "inquirer": "^7.3.3",
+    "minimatch": "^3.0.4",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "jest": "^26.4.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "description": "",
+  "keywords": [
+    "node",
+    "cli",
+    "node-cli-temple"
+  ],
+  "author": "template-user",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
+  }
+}
