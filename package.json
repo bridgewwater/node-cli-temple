@@ -9,7 +9,10 @@
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
     "inquirer": "^7.3.3",
+    "lodash": "^4.17.20",
+    "log4js": "^6.3.0",
     "minimatch": "^3.0.4",
+    "moment": "^2.29.1",
     "shelljs": "^0.8.4"
   },
   "devDependencies": {

@@ -1,10 +1,9 @@
 #! /usr/bin/env node
 
 const program = require('commander');
-
+const moment = require('moment');
 const shell = require('shelljs');
 const nlog = require('./nlog');
-
 const app = require('../package.json');
 
 program.version(app.version, '-v, --version', 'output the current version');
@@ -23,6 +22,8 @@ if (process.argv.length < 3) {
   nlog.error(`cli [ ${app.name} ] must has args, please check or use: ${app.name} --help`);
   shell.exit(1);
 }
+
+nlog.file(`logs/${app.name}-${moment(new Date(), moment.defaultFormat).format('YYYY-MM-DD-HH-mm')}.log`);
 
 program
   .command('check')
