@@ -3,6 +3,8 @@ node_js:
   - "10"
   - "lts/*"
   - "node"
+install:
+  - make install
 cache:
   directories:
     - "node_modules"
