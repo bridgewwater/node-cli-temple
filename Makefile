@@ -4,7 +4,7 @@
 ENV_DIST_VERSION := 1.0.0
 
 # change base namespace
-ENV_PROJECT_NAME=tudm-cli
+ENV_PROJECT_NAME=node-cli-temple
 
 ENV_ROOT ?= $(shell pwd)
 ENV_MODULE_FOLDER ?= ${ENV_ROOT}
