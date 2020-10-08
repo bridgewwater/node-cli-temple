@@ -15,7 +15,6 @@ ENV_MODULE_CHANGELOG = ${ENV_MODULE_FOLDER}/CHANGELOG.md
 utils:
 	node -v
 	npm -v
-	npm install eslint jest --global
 	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli
 
 versionHelp:
@@ -37,6 +36,10 @@ tagBefore: versionHelp
 	@echo "place check all file, then can add tag like this!"
 	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
 
+install:
+	npm install eslint jest codecov --global
+	npm install
+
 lint:
 	npm run lint
 
@@ -45,6 +48,9 @@ test:
 
 testCoverage:
 	jest --collectCoverage
+
+testCICoverage:
+	jest --ci --coverage && codecov
 
 testAll:
 	npm run test
@@ -63,8 +69,11 @@ help:
 	@echo "$$ make versionHelp         ~> print version when make tageBefore will print again"
 	@echo "$$ make tagBefore           ~> generate CHANGELOG.md and copy to module folder"
 	@echo ""
+	@echo "$$ make install             ~> install must tools"
+	@echo ""
 	@echo " unit test as"
 	@echo "$$ make lint                ~> run eslint"
 	@echo "$$ make test                ~> only run unit test as change"
 	@echo "$$ make testAll             ~> run full unit test"
 	@echo "$$ make testCoverage        ~> run full unit test and show coverage"
+	@echo "$$ make testCICoverage      ~> run full unit test CI coverage"
