@@ -3,7 +3,7 @@
 const program = require('commander');
 const moment = require('moment');
 const shell = require('shelljs');
-const nlog = require('./nlog');
+const nlog = require('../src/utils/nlog');
 const config = require('../src/config');
 const app = require('../package.json');
 

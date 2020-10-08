@@ -38,9 +38,8 @@ const verbose = function () {
 const _log = function () {
   if (is_no_color) {
     return _no_color;
-  } else {
-    return chalk;
   }
+  return chalk;
 };
 
 const change_no_color = function () {

@@ -15,6 +15,7 @@ ENV_MODULE_CHANGELOG = ${ENV_MODULE_FOLDER}/CHANGELOG.md
 utils:
 	node -v
 	npm -v
+	npm install eslint jest --global
 	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli
 
 versionHelp:
@@ -36,6 +37,18 @@ tagBefore: versionHelp
 	@echo "place check all file, then can add tag like this!"
 	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
 
+lint:
+	npm run lint
+
+test:
+	jest -o
+
+testCoverage:
+	jest --collectCoverage
+
+testAll:
+	npm run test
+
 help:
 	@echo "python package makefile template"
 	@echo " project name         : ${ENV_PROJECT_NAME}"
@@ -50,3 +63,8 @@ help:
 	@echo "$$ make versionHelp         ~> print version when make tageBefore will print again"
 	@echo "$$ make tagBefore           ~> generate CHANGELOG.md and copy to module folder"
 	@echo ""
+	@echo " unit test as"
+	@echo "$$ make lint                ~> run eslint"
+	@echo "$$ make test                ~> only run unit test as change"
+	@echo "$$ make testAll             ~> run full unit test"
+	@echo "$$ make testCoverage        ~> run full unit test and show coverage"
