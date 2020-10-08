@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "10"
-  - "lts/*"
   - "node"
+  - "lts/*"
+  - "14.x"
 install:
   - make install
 cache:
