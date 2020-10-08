@@ -4,7 +4,9 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/node-cli-temple.svg?style=flat)](https://npmcharts.com/compare/node-cli-temple?minimal=true)
 
 
-# github.com/bridgewwater/node-cli-temple
+# node-cli-temple
+
+https://github.com/bridgewwater/node-cli-temple
 
 this is for node CLI programming project.
 
