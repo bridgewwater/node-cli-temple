@@ -36,9 +36,14 @@ tagBefore: versionHelp
 	@echo "place check all file, then can add tag like this!"
 	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
 
-install:
+installGlobal:
 	npm install eslint jest codecov --global
+
+install:
 	npm install
+
+installAll: utils installGlobal install
+	@echo "=> install all finish"
 
 lint:
 	npm run lint
@@ -71,7 +76,9 @@ help:
 	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
 	@echo ""
 	@echo "Warning: must install node and install module as"
-	@echo "$$ make install             ~> install must tools"
+	@echo "$$ make installGlobal       ~> install must tools at global"
+	@echo "$$ make install             ~> install project"
+	@echo "$$ make installAll          ~> install all include global utils and node_module"
 	@echo "$$ make lint                ~> run eslint"
 	@echo " unit test as"
 	@echo "$$ make test                ~> only run unit test as change"
