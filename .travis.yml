@@ -7,6 +7,20 @@ os:
   - linux
   - osx
   - windows
+before_install:
+- |-
+  case $TRAVIS_OS_NAME in
+    windows)
+      choco install make
+      export PATH=/C/tools/msys64/mingw64/bin:$PATH
+      export MAKE=mingw32-make  # so that Autotools can find it
+    ;;
+#    *)
+#    make installGlobal
+#    make install
+#    ;;
+  esac
+
 install:
   - make installGlobal
   - make install
