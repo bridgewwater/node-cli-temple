@@ -44,6 +44,7 @@ install:
   case $TRAVIS_OS_NAME in
     windows)
       rd /s /q package-lock.json
+      rd /s /q node_modules
       npm install eslint jest codecov --global
       npm install
     ;;
