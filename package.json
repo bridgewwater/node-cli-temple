@@ -5,6 +5,7 @@
     "node-cli-temple": "./bin/node-cli-temple.js"
   },
   "scripts": {
+    "clean:rimraf": "rimraf node_modules && rimraf package-lock.json",
     "lint": "eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
     "test": "jest"
   },

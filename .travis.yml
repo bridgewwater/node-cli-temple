@@ -45,7 +45,8 @@ install:
     windows)
       rd /s /q package-lock.json
       rd /s /q node_modules
-      npm install eslint jest codecov --global
+      npm install rimraf eslint jest codecov --global
+      npm run clean:rimraf
       npm install
     ;;
     *)

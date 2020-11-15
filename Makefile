@@ -59,7 +59,7 @@ cleanAll: cleanCoverageOut cleanNpmCache
 	@echo "=> clean all finish"
 
 installGlobal:
-	npm install eslint jest codecov --global
+	npm install rimraf eslint jest codecov --global
 
 install:
 	npm install
