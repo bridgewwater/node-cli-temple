@@ -1,3 +1,4 @@
+const process = require('process');
 const javascriptSettings = {
   files: ['*.js'],
   env: {
@@ -19,7 +20,7 @@ const javascriptSettings = {
     ],
     'linebreak-style': [
       'error',
-      'unix'
+      process.platform === 'win32' ? 'consistent' : 'unix'
     ],
     'quotes': [
       'error',
