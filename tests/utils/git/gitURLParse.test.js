@@ -24,3 +24,16 @@ test('gitURLParse.test url2http', () => {
   let urlSSHPort2http = gitURLParse.url2http(test_ssh_port_url, true);
   expect(urlSSHPort2http).toEqual(test_http_port_url);
 });
+
+test('gitURLParse.test url2ssh', () => {
+  // mock
+  let urlGit2ssh = gitURLParse.url2ssh(test_git_url);
+  let urlGitPort2ssh = gitURLParse.url2ssh(test_git_port_url);
+  let urlHttp2ssh = gitURLParse.url2ssh(test_http_url);
+  let urlHttpPort2ssh = gitURLParse.url2ssh(test_http_port_url);
+  // verify
+  expect(urlGit2ssh).toEqual(test_ssh_url);
+  expect(urlGitPort2ssh).toEqual(test_ssh_port_url);
+  expect(urlHttp2ssh).toEqual(test_ssh_url);
+  expect(urlHttpPort2ssh).toEqual(test_ssh_port_url);
+});
