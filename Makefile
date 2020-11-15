@@ -11,6 +11,9 @@ ENV_MODULE_FOLDER ?= ${ENV_ROOT}
 ENV_MODULE_MAKE_FILE ?= ${ENV_MODULE_FOLDER}/Makefile
 ENV_MODULE_MANIFEST = ${ENV_MODULE_FOLDER}/package.json
 ENV_MODULE_CHANGELOG = ${ENV_MODULE_FOLDER}/CHANGELOG.md
+ENV_COVERAGE_OUT_FOLDER = ${ENV_ROOT}/coverage/
+ENV_NODE_MODULES_FOLDER = ${ENV_ROOT}/node_modules/
+ENV_NODE_MODULES_LOCK_FILE = ${ENV_ROOT}/package-lock.json
 
 utils:
 	node -v
@@ -35,6 +38,25 @@ tagBefore: versionHelp
 	@echo "=> new CHANGELOG.md at: ${ENV_MODULE_CHANGELOG}"
 	@echo "place check all file, then can add tag like this!"
 	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
+
+cleanCoverageOut:
+	@if [ -d ${ENV_COVERAGE_OUT_FOLDER} ]; \
+	then rm -rf ${ENV_COVERAGE_OUT_FOLDER} && echo "~> cleaned ${ENV_COVERAGE_OUT_FOLDER}"; \
+	else echo "~> has cleaned ${ENV_COVERAGE_OUT_FOLDER}"; \
+	fi
+
+cleanNpmCache:
+	@if [ -d ${ENV_NODE_MODULES_FOLDER} ]; \
+	then rm -rf ${ENV_NODE_MODULES_FOLDER} && echo "~> cleaned ${ENV_NODE_MODULES_FOLDER}"; \
+	else echo "~> has cleaned ${ENV_NODE_MODULES_FOLDER}"; \
+	fi
+	@if [ -f ${ENV_NODE_MODULES_LOCK_FILE} ]; \
+	then rm -f ${ENV_NODE_MODULES_LOCK_FILE} && echo "~> cleaned ${ENV_NODE_MODULES_LOCK_FILE}"; \
+	else echo "~> has cleaned ${ENV_NODE_MODULES_LOCK_FILE}"; \
+	fi
+
+cleanAll: cleanCoverageOut cleanNpmCache
+	@echo "=> clean all finish"
 
 installGlobal:
 	npm install eslint jest codecov --global
