@@ -57,10 +57,12 @@ install:
   esac
 cache:
   directories:
+    - "coverage"
 #    - "node_modules"
-    - $HOME/AppData/Local/Temp/chocolatey
-    - /C/tools/
-    - $HOME/Library/Caches/Homebrew
+#    - $HOME/AppData/Local/Temp/chocolatey
+#    - /C/tools/
+#    - $HOME/Library/Caches/Homebrew
 script:
   - npm run lint
   - npm test
+  - npm jest:coverage
