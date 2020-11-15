@@ -65,4 +65,4 @@ cache:
 script:
   - npm run lint
   - npm test
-  - npm jest:coverage
+  - npm run jest:coverage
