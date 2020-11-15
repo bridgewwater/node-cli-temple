@@ -9,8 +9,14 @@ const url2http = function (url, https = false) {
   if (url.startsWith('git@')) {
     let split = url.split(':');
     if (split.length > 1) {
-      let head = split[0].replace('git@', 'ssh://git@');
-      url = '{0}/{1}'.format(head, split[1]);
+      if (split.length === 2) {
+        let head = split[0].replace('git@', 'ssh://git@');
+        url = '{0}/{1}'.format(head, split[1]);
+      }
+      if (split.length > 2) {
+        let head = split[0].replace('git@', 'ssh://git@');
+        url = '{0}:{1}/{2}'.format(head, split[1], split[2]);
+      }
     }
   }
   let parse = urlLib.parse(url);
