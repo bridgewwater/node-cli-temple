@@ -55,7 +55,7 @@ install:
   esac
 cache:
   directories:
-    - "node_modules"
+#    - "node_modules"
     - $HOME/AppData/Local/Temp/chocolatey
     - /C/tools/
     - $HOME/Library/Caches/Homebrew
