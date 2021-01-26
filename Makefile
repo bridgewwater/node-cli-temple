@@ -18,7 +18,7 @@ ENV_NODE_MODULES_LOCK_FILE = ${ENV_ROOT}/package-lock.json
 utils:
 	node -v
 	npm -v
-	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli
+	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli npm-check-updates
 
 versionHelp:
 	@git fetch --tags
@@ -66,6 +66,10 @@ install:
 
 installAll: utils installGlobal install
 	@echo "=> install all finish"
+
+upgradeAll:
+	ncu -u
+	npm ci
 
 lint:
 	npm run lint
