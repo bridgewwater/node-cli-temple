@@ -6,7 +6,7 @@
 
 # node-cli-temple
 
-https://github.com/bridgewwater/node-cli-temple
+[https://github.com/bridgewwater/node-cli-temple](https://github.com/bridgewwater/node-cli-temple)
 
 this is for node CLI programming project.
 
