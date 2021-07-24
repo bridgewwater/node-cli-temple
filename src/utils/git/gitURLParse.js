@@ -2,6 +2,13 @@ const format = require('string-format');
 format.extend(String.prototype, {});
 const urlLib = require('url');
 
+
+/**
+ * url tp http
+ * @param url
+ * @param https
+ * @returns {string}
+ */
 const url2http = function (url, https = false) {
   if (typeof url !== 'string') {
     throw new Error('url not string');
@@ -33,6 +40,11 @@ const url2http = function (url, https = false) {
   return url;
 };
 
+/**
+ * url to ssh
+ * @param url
+ * @returns {string}
+ */
 const url2ssh = function (url) {
   if (typeof url !== 'string') {
     throw new Error('url not string');
