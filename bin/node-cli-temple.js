@@ -5,9 +5,9 @@ const moment = require('moment');
 const shell = require('shelljs');
 const nlog = require('../src/utils/nlog');
 const config = require('../src/config');
-const app = require('../package.json');
+const {pkgInfo, binName} = require('../src/utils/pkgInfo');
 
-program.version(app.version, '--version', 'output the current version');
+program.version(pkgInfo.version, '--version', 'output the current version');
 
 program.option('-v, --verbose', '[-|+] see verbose', false)
   .on('option:verbose', function () {
@@ -15,7 +15,7 @@ program.option('-v, --verbose', '[-|+] see verbose', false)
   });
 program.option('--log', '[-|+] open log file out put', false)
   .on('option:log', function () {
-    nlog.file(`logs/${app.name}-${moment(new Date(), moment.defaultFormat).format('YYYY-MM-DD-HH-mm')}.log`);
+    nlog.file(`logs/${binName()}-${moment(new Date(), moment.defaultFormat).format('YYYY-MM-DD-HH-mm')}.log`);
   });
 program.option('-f, --force', '[-|+] force mode', false)
   .on('option:force', function () {
@@ -31,7 +31,7 @@ program.option('--no-color', '[+|-] close color cli out put', false)
 // check args input
 // eslint-disable-next-line no-undef
 if (process.argv.length < 3) {
-  nlog.error(`cli [ ${app.name} ] must has args, please check or use: ${app.name} --help`);
+  nlog.error(`cli [ ${binName()} ] must has args, please check or use: ${binName()} --help`);
   shell.exit(1);
 }
 
@@ -48,6 +48,6 @@ program
   });
 
 // https://github.com/tj/commander.js
-program.name(app.name).usage('[command] [options] ');
+program.name(binName()).usage('[command] [options] ');
 // eslint-disable-next-line no-undef
 program.parse(process.argv);
