@@ -25,11 +25,12 @@ const parseCloneCMD = function (repo, url, options) {
       let url2http = gitURLParse.url2http(url, options.https);
       let parse = urlLib.parse(url);
       if (lodash.isEmpty(parse.hash)) {
-        return url2http.replace('{0}//'.format(parse.protocol),
-          '{0}//oauth2:{1}@'.format(parse.protocol, options.gitlabAccessToken));
+        return url2http.replace(
+          '{0}//'.format(parse.protocol),
+          '{0}//oauth2:{1}@'.format(parse.protocol, options.gitlabAccessToken)
+        );
       }
-      return '{0}//oauth2:{1}@{2}{3}'.format(
-        parse.protocol, options.gitlabAccessToken, parse.hostname, parse.path);
+      return '{0}//oauth2:{1}@{2}{3}'.format(parse.protocol, options.gitlabAccessToken, parse.hostname, parse.path);
     }
   }
   let split = url.split('#');

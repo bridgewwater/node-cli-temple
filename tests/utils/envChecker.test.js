@@ -5,7 +5,7 @@ test('envChecker.test checkBinaryExits', () => {
   let binaryExitsGit = envChecker.checkBinaryExits('git');
   // verify
   expect(binaryExitsGit).toEqual(true);
-  
+
   let binaryExitsGat = envChecker.checkBinaryExits('gat');
   expect(binaryExitsGat).toEqual(false);
 });

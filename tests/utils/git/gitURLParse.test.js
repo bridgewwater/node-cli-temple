@@ -17,10 +17,10 @@ test('gitURLParse.test url2http', () => {
   expect(urlGit2http).toEqual(test_http_url);
   let urlSSH2http = gitURLParse.url2http(test_ssh_url, true);
   expect(urlSSH2http).toEqual(test_http_url);
-  
+
   let urlGitPort2http = gitURLParse.url2http(test_git_port_url, true);
   expect(urlGitPort2http).toEqual(test_http_port_url);
-  
+
   let urlSSHPort2http = gitURLParse.url2http(test_ssh_port_url, true);
   expect(urlSSHPort2http).toEqual(test_http_port_url);
 });

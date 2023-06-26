@@ -10,5 +10,5 @@ const force = function () {
 
 module.exports = {
   open_force,
-  force,
+  force
 };

@@ -1,6 +1,5 @@
 // Copyright sinlov
 
-
 const pkgInfo = require('../../package.json');
 
 let cacheBinName = '';

@@ -2,7 +2,6 @@ const format = require('string-format');
 format.extend(String.prototype, {});
 const urlLib = require('url');
 
-
 /**
  * url tp http
  * @param url
@@ -30,12 +29,15 @@ const url2http = function (url, https = false) {
   // console.log('parse', parse, 'out_scheme', out_scheme);
   if (parse.protocol === 'ssh:') {
     if (!parse.port) {
-      return '{0}://{1}{2}{3}'.format(
-        out_scheme, parse.hostname, parse.path, !parse.hash ? '' : parse.hash);
+      return '{0}://{1}{2}{3}'.format(out_scheme, parse.hostname, parse.path, !parse.hash ? '' : parse.hash);
     }
     return '{0}://{1}:{2}{3}{4}'.format(
-      out_scheme, parse.hostname, parse.port, parse.path,
-      !parse.hash ? '' : parse.hash);
+      out_scheme,
+      parse.hostname,
+      parse.port,
+      parse.path,
+      !parse.hash ? '' : parse.hash
+    );
   }
   return url;
 };
@@ -64,11 +66,16 @@ const url2ssh = function (url) {
   let parse = urlLib.parse(url);
   if (parse.protocol === 'https:' || parse.protocol === 'http:') {
     if (!parse.port) {
-      return '{0}://{1}@{2}{3}{4}'.format(
-        'ssh', 'git', parse.hostname, parse.path, !parse.hash ? '' : parse.hash);
+      return '{0}://{1}@{2}{3}{4}'.format('ssh', 'git', parse.hostname, parse.path, !parse.hash ? '' : parse.hash);
     }
     return '{0}://{1}@{2}:{3}{4}{5}'.format(
-      'ssh', 'git', parse.hostname, parse.port, parse.path, !parse.hash ? '' : parse.hash);
+      'ssh',
+      'git',
+      parse.hostname,
+      parse.port,
+      parse.path,
+      !parse.hash ? '' : parse.hash
+    );
   }
 };
 

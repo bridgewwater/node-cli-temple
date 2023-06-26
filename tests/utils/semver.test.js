@@ -13,7 +13,7 @@ test('semver.test valid', () => {
 test('semver.test clean', () => {
   let cleanVersion = semver.clean('  =v1.2.3   ');
   expect(cleanVersion).toEqual('1.2.3');
-  let cleanLoose = semver.clean(' = v 2.1.5foo', {loose: true});
+  let cleanLoose = semver.clean(' = v 2.1.5foo', { loose: true });
   expect(cleanLoose).toEqual('2.1.5-foo');
   let cleanNoLoose = semver.clean(' = v 2.1.5-foo');
   expect(cleanNoLoose).toEqual(null);
@@ -21,7 +21,7 @@ test('semver.test clean', () => {
   expect(cleanSpace).toEqual('2.1.5');
   let cleanRange = semver.clean('~1.0.0');
   expect(cleanRange).toEqual(null);
-  let cleanRangeLoose = semver.clean('~1.0.0', {loose: true});
+  let cleanRangeLoose = semver.clean('~1.0.0', { loose: true });
   expect(cleanRangeLoose).toEqual(null);
 });
 
@@ -31,22 +31,22 @@ test('semver.test inc', () => {
   expect(incPreMajor).toEqual('2.0.0-alpha.0');
   let incMajor = semver.inc('1.2.3', 'major', 'alpha');
   expect(incMajor).toEqual('2.0.0');
-  
+
   let incPreMinor = semver.inc('1.2.3', 'preminor', 'alpha');
   expect(incPreMinor).toEqual('1.3.0-alpha.0');
   let incMinor = semver.inc('1.2.3', 'minor', 'alpha');
   expect(incMinor).toEqual('1.3.0');
-  
+
   let incPrePatch = semver.inc('1.2.3', 'prepatch', 'alpha');
   expect(incPrePatch).toEqual('1.2.4-alpha.0');
   let incPatch = semver.inc('1.2.3', 'patch', 'alpha');
   expect(incPatch).toEqual('1.2.4');
-  
+
   let incBeta = semver.inc('1.2.3', 'prerelease', 'beta');
   expect(incBeta).toEqual('1.2.4-beta.0');
   let incRc = semver.inc('1.2.3', 'prerelease', 'rc');
   expect(incRc).toEqual('1.2.4-rc.0');
-  
+
   let incPreRc = semver.inc('1.2.3', 'pre', 'rc');
   expect(incPreRc).toEqual('1.2.3-rc.0');
   let incPreRcNext = semver.inc('1.2.3-rc.0', 'pre', 'rc');

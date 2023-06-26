@@ -1,5 +1,5 @@
 let chalk = require('chalk');
-const _no_color = new chalk.Instance({level: 0});
+const _no_color = new chalk.Instance({ level: 0 });
 let is_no_color = false;
 let is_no_log_file = true;
 const log4js = require('log4js');
@@ -10,11 +10,12 @@ const file = function (fileName, level) {
   }
   log4js.configure({
     appenders: {
-      'node-cli-temple': {type: 'file', filename: fileName}
+      'node-cli-temple': { type: 'file', filename: fileName }
     },
     categories: {
       default: {
-        appenders: ['node-cli-temple'], level: level
+        appenders: ['node-cli-temple'],
+        level: level
       }
     }
   });
@@ -79,6 +80,10 @@ const error = function (message) {
 module.exports = {
   file,
   no_color: change_no_color,
-  open_verbose, verbose,
-  info, debug, warning, error
+  open_verbose,
+  verbose,
+  info,
+  debug,
+  warning,
+  error
 };

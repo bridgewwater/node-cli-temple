@@ -28,13 +28,13 @@ env:
 
 cleanCoverageOut:
 	@$(RM) -r ${ENV_COVERAGE_OUT_FOLDER}
-	$(info "~> has cleaned ${ENV_COVERAGE_OUT_FOLDER}")
+	$(info ~> has cleaned ${ENV_COVERAGE_OUT_FOLDER})
 
 cleanNpmCache:
 	@$(RM) -r ${ENV_NODE_MODULES_FOLDER}
-	$(info "~> has cleaned ${ENV_NODE_MODULES_FOLDER}")
+	$(info ~> has cleaned ${ENV_NODE_MODULES_FOLDER})
 	@$(RM) ${ENV_NODE_MODULES_LOCK_FILE}
-	$(info "~> has cleaned ${ENV_NODE_MODULES_LOCK_FILE}")
+	$(info ~> has cleaned ${ENV_NODE_MODULES_LOCK_FILE})
 
 cleanAll: cleanCoverageOut cleanNpmCache
 	@echo "=> clean all finish"
@@ -69,7 +69,8 @@ testCICoverage:
 testAll:
 	npm run test
 
-style: lint
+style:
+	npm run format
 
 buildIfPresent:
 	npm run build --if-present
@@ -116,7 +117,7 @@ help:
 	@echo "$$ make installGlobal       ~> install must tools at global"
 	@echo "$$ make install             ~> install project"
 	@echo "$$ make installAll          ~> install all include global utils and node_module"
-	@echo "$$ make style               ~> run style check"
+	@echo "$$ make style               ~> run style check and auto fix"
 	@echo "$$ make ci                  ~> run ci"
 	@echo " unit test as"
 	@echo "$$ make test                ~> only run unit test as change"
