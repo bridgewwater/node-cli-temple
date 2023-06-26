@@ -1,10 +1,19 @@
+## install github app
+
+- [https://github.com/apps/codecov/installations/new](https://github.com/apps/codecov/installations/new)
+- add `CODECOV_TOKEN` to action secrets
+
+## config-file
+
+`node-codecov.yml`
+
+```yml
 name: node-codecov
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
 
 permissions:
   contents: write
@@ -39,3 +48,5 @@ jobs:
           token: ${{secrets.CODECOV_TOKEN}}
           files: coverage/clover.xml
 #          verbose: true
+
+```
