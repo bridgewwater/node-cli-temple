@@ -48,5 +48,9 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
+  },
+  "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
+  "bugs": {
+    "url": "https://github.com/bridgewwater/node-cli-temple/issues"
   }
 }
