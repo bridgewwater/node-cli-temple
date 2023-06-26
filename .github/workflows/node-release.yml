@@ -1,3 +1,4 @@
+# need env: NPM_TOKEN add at to action secrets, npm token doc see https://docs.npmjs.com/about-access-tokens/
 name: node-release
 
 on:
@@ -9,7 +10,33 @@ permissions:
   contents: write
 
 jobs:
-  go-release-cross:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 'lts/*'
+      - run: |
+          node -v
+          npm install
+          npm test
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 'lts/*'
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  node-gh-release:
+    needs: publish-npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
