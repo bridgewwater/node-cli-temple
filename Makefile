@@ -8,8 +8,8 @@ ENV_MODULE_FOLDER ?=${ENV_ROOT}
 ENV_MODULE_MAKE_FILE ?=${ENV_MODULE_FOLDER}/Makefile
 ENV_MODULE_MANIFEST =${ENV_MODULE_FOLDER}/package.json
 ENV_MODULE_CHANGELOG =${ENV_MODULE_FOLDER}/CHANGELOG.md
-ENV_COVERAGE_OUT_FOLDER =${ENV_ROOT}/coverage/
-ENV_NODE_MODULES_FOLDER =${ENV_ROOT}/node_modules/
+ENV_COVERAGE_OUT_FOLDER =${ENV_ROOT}/coverage
+ENV_NODE_MODULES_FOLDER =${ENV_ROOT}/node_modules
 ENV_NODE_MODULES_LOCK_FILE =${ENV_ROOT}/package-lock.json
 ENV_ROOT_CHANGELOG_PATH?=CHANGELOG.md
 
@@ -47,6 +47,9 @@ install:
 
 installAll: utils installGlobal install
 	@echo "=> install all finish"
+
+dep: cleanNpmCache install
+	$(info ~> dep finish)
 
 upgradeCheck:
 	npx npm-check-updates
@@ -120,6 +123,7 @@ help:
 	@echo "$$ make installGlobal       ~> install must tools at global"
 	@echo "$$ make install             ~> install project"
 	@echo "$$ make installAll          ~> install all include global utils and node_module"
+	@echo "$$ make dep                 ~> clean install and install all"
 	@echo "$$ make style               ~> run style check and auto fix"
 	@echo "$$ make ci                  ~> run ci"
 	@echo " unit test as"
