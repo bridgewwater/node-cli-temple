@@ -59,12 +59,12 @@ lint:
 	npm run lint
 
 test:
-	npm run test
+	npm test
 
-testCoverage:
+testCoverage: cleanCoverageOut
 	npm run jest:collectCoverage
 
-testCICoverage:
+testCICoverage: cleanCoverageOut
 	npm run jest:coverage
 	codecov
 

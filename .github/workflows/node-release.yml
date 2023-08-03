@@ -47,6 +47,12 @@ jobs:
           npm install
           node -v
 
+      -
+        name: Run code check
+        run: |
+          npm run lint
+          npm test
+
       - name: Check Release archive
         if: ${{ inputs.upload_artifact_name != null }}
         run: |
