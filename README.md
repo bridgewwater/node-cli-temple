@@ -4,10 +4,20 @@ node cli temple for fast develop
 
 [https://github.com/bridgewwater/node-cli-temple](https://github.com/bridgewwater/node-cli-temple)
 
+[![npm version](https://img.shields.io/npm/v/node-cli-temple)](https://www.npmjs.com/package/node-cli-temple)
+[![node lts version](https://img.shields.io/node/v-lts/node-cli-temple)](https://www.npmjs.com/package/node-cli-temple)
+[![npm license](https://img.shields.io/npm/l/node-cli-temple)](https://www.npmjs.com/package/node-cli-temple)
+[![npm download month](https://img.shields.io/npm/dm/node-cli-temple)](https://www.npmjs.com/package/node-cli-temple)
+[![npm collaborators](https://img.shields.io/npm/collaborators/node-cli-temple)](https://www.npmjs.com/package/node-cli-temple)
+
 [![ci](https://github.com/bridgewwater/node-cli-temple/workflows/ci/badge.svg)](https://github.com/bridgewwater/node-cli-temple/actions/workflows/ci.yml)
-[![NPM Version](http://img.shields.io/npm/v/node-cli-temple.svg?style=flat)](https://www.npmjs.org/package/node-cli-temple)
-[![NPM Downloads](https://img.shields.io/npm/dm/node-cli-temple.svg?style=flat)](https://npmcharts.com/compare/node-cli-temple?minimal=true)
+
+[![github node package.json version](https://img.shields.io/github/package-json/v/bridgewwater/node-cli-temple?label=package.json)](https://github.com/bridgewwater/node-cli-temple)
+[![GitHub license](https://img.shields.io/github/license/bridgewwater/node-cli-temple)](https://github.com/bridgewwater/node-cli-temple)
 [![codecov](https://codecov.io/gh/bridgewwater/node-cli-temple/branch/main/graph/badge.svg)](https://codecov.io/gh/bridgewwater/node-cli-temple)
+[![GitHub latest SemVer tag)](https://img.shields.io/github/v/tag/bridgewwater/node-cli-temple)](https://github.com/bridgewwater/node-cli-temple/tags)
+[![GitHub release)](https://img.shields.io/github/v/release/bridgewwater/node-cli-temple)](https://github.com/bridgewwater/node-cli-temple/releases)
+
 
 # Features
 

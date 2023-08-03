@@ -1,6 +1,7 @@
 {
-  "name": "node-cli-temple",
   "version": "1.0.0",
+  "name": "node-cli-temple",
+  "description": "node-cli-temple",
   "bin": {
     "node-cli-temple": "./bin/node-cli-temple.js"
   },
@@ -39,9 +40,8 @@
     "semver": "^7.5.4"
   },
   "engines": {
-    "node": ">=10.24.0"
+    "node": ">=16.0.0"
   },
-  "description": "",
   "keywords": [
     "node",
     "cli",

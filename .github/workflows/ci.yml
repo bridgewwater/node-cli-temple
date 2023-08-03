@@ -43,6 +43,15 @@ jobs:
     uses: ./.github/workflows/node-ci.yml
     secrets: inherit
 
+  node-codecov:
+    name: node-codecov
+    needs:
+      - version
+      - node-ci
+    uses: ./.github/workflows/node-codecov.yml
+    # if: startsWith(github.ref, 'refs/tags/')
+    secrets: inherit
+
   node-release:
     name: node-release
     needs:
