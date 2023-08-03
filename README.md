@@ -4,7 +4,7 @@ node cli temple for fast develop
 
 [https://github.com/bridgewwater/node-cli-temple](https://github.com/bridgewwater/node-cli-temple)
 
-[![node-ci](https://github.com/bridgewwater/node-cli-temple/workflows/node-ci/badge.svg)](https://github.com/bridgewwater/node-cli-temple/actions/workflows/node-ci.yml)
+[![ci](https://github.com/bridgewwater/node-cli-temple/workflows/ci/badge.svg)](https://github.com/bridgewwater/node-cli-temple/actions/workflows/ci.yml)
 [![NPM Version](http://img.shields.io/npm/v/node-cli-temple.svg?style=flat)](https://www.npmjs.org/package/node-cli-temple)
 [![NPM Downloads](https://img.shields.io/npm/dm/node-cli-temple.svg?style=flat)](https://npmcharts.com/compare/node-cli-temple?minimal=true)
 [![codecov](https://codecov.io/gh/bridgewwater/node-cli-temple/branch/main/graph/badge.svg)](https://codecov.io/gh/bridgewwater/node-cli-temple)

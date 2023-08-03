@@ -1,0 +1,8 @@
+{
+  "upgrade": false,
+  "filter": "jest",
+  "reject": [
+    "@types/estree",
+    "ts-node"
+  ]
+}

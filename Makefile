@@ -40,7 +40,7 @@ cleanAll: cleanCoverageOut cleanNpmCache
 	@echo "=> clean all finish"
 
 installGlobal:
-	npm install --global rimraf eslint jest
+	npm install --global rimraf eslint
 
 install:
 	npm install
@@ -48,22 +48,24 @@ install:
 installAll: utils installGlobal install
 	@echo "=> install all finish"
 
+upgradeCheck:
+	npx npm-check-updates
+
 upgradeAll:
-	ncu -u
-	npm ci
+	npx npm-check-updates -u
+	npm install
 
 lint:
 	npm run lint
 
 test:
-	jest --ci
+	npm run test
 
 testCoverage:
-	jest --collectCoverage
+	npm run jest:collectCoverage
 
 testCICoverage:
-	$(info "if codecov not install, please install as: npm install -g codecov")
-	jest --ci --coverage
+	npm run jest:coverage
 	codecov
 
 testAll:
@@ -73,6 +75,7 @@ style:
 	npm run format
 
 buildIfPresent:
+	npm ci
 	npm run build --if-present
 
 ci: buildIfPresent lint test

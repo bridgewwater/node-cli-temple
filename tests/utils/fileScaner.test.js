@@ -8,7 +8,7 @@ test('fileScanner readFileSyncAsString', () => {
 test('fileScanner readFileSyncAsJson', () => {
   let packageJson = fileScanner.readFileSyncAsJson('package.json');
   expect(packageJson).not.toBe(NaN);
-  expect(packageJson.scripts.test).toEqual('jest');
+  expect(packageJson.scripts.test).toEqual('jest --ci');
 });
 
 test('fileScanner readFileSyncAsYaml', () => {
