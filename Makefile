@@ -83,6 +83,9 @@ buildIfPresent:
 
 ci: buildIfPresent lint test
 
+devHelp:
+	npm run cli:help
+
 utils:
 	node -v
 	npm -v

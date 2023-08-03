@@ -11,7 +11,8 @@
     "lint": "eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
     "test": "jest --ci",
     "jest:coverage": "jest --ci --coverage",
-    "jest:collectCoverage": "jest --collectCoverage"
+    "jest:collectCoverage": "jest --collectCoverage",
+    "cli:help": "node bin/node-cli-temple.js -h"
   },
   "dependencies": {
     "chalk": "^4.1.0",
