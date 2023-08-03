@@ -4,24 +4,25 @@
 name: node-ci
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call: # https://docs.github.com/actions/using-workflows/reusing-workflows#using-inputs-and-secrets-in-a-reusable-workflow
 
 jobs:
   node-ci:
     name: node-ci
+    defaults:
+      run:
+        shell: bash
+       # working-directory: ${{ env.WORK_DIR }}
     strategy:
       matrix:
         node-version: # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-         - '10.x'
-         - '18.x'
-         - '20.x'
+          - '10.x'
+          - 'lts/*'
+          - '20.x'
         os:
-          - macos-latest
-          - windows-latest
           - ubuntu-latest
+          - windows-latest
+          - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -32,13 +33,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
       -
         name: Install dependencies
-        run: npm install
+        run: |
+          npm ci
+          # npm install
+          node -v
       -
         name: Build if present
-        run: npm run build --if-present
+        run: |
+          npm run build --if-present
       -
         name: Test with node
-        run: npm test
+        run: |
+          npm test
       -
         name: Test coverage
-        run: npm run jest:coverage
+        run: |
+          npm run jest:coverage
