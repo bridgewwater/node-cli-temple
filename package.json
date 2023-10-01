@@ -17,7 +17,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^11.0.0",
-    "inquirer": "^9.2.10",
+    "inquirer": "^9.2.11",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1",
     "minimatch": "^9.0.3",
