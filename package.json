@@ -2,17 +2,32 @@
   "version": "1.0.0",
   "name": "node-cli-temple",
   "description": "node-cli-temple",
+  "keywords": [
+    "node",
+    "cli",
+    "node-cli-temple"
+  ],
+  "author": "template-user",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
+  },
+  "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
+  "bugs": {
+    "url": "https://github.com/bridgewwater/node-cli-temple/issues"
+  },
   "bin": {
     "node-cli-temple": "./bin/node-cli-temple.js"
   },
   "scripts": {
-    "clean:rimraf": "rimraf node_modules package-lock.json",
-    "format": "prettier --write src/*.js src/**/*.js src/**/**/*.js tests/**/*.js tests/**/**/*.js",
-    "lint": "eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
-    "test": "jest --ci",
-    "jest:coverage": "jest --ci --coverage",
-    "jest:collectCoverage": "jest --collectCoverage",
-    "cli:help": "node bin/node-cli-temple.js -h"
+    "cli:help": "node bin/node-cli-temple.js -h",
+    "clean:rimraf": "npx rimraf node_modules package-lock.json",
+    "format": "npx prettier --write src/*.js src/**/*.js src/**/**/*.js tests/**/*.js tests/**/**/*.js",
+    "lint": "npx eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
+    "test": "npx jest --ci",
+    "jest:coverage": "npx jest --ci --coverage",
+    "jest:collectCoverage": "npx jest --collectCoverage --silent"
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -37,25 +52,11 @@
     "eslint-plugin-jest": "^28.6.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
+    "rimraf": "5.0.6",
     "regenerator-runtime": "^0.14.1",
     "semver": "^7.6.3"
   },
   "engines": {
-    "node": ">=16.0.0"
-  },
-  "keywords": [
-    "node",
-    "cli",
-    "node-cli-temple"
-  ],
-  "author": "template-user",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
-  },
-  "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
-  "bugs": {
-    "url": "https://github.com/bridgewwater/node-cli-temple/issues"
+    "node": ">=18.0.0"
   }
 }
