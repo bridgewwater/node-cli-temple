@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 export default [
   {
     plugins: {
-      jest,
+      jest
     }
   },
   ...compat.extends('eslint:recommended', 'plugin:jest/recommended').map((config) => ({
@@ -37,20 +37,11 @@ export default [
     },
 
     rules: {
-      'indent': [
-        'error',
-        2,
-      ],
-      'quotes': [
-        'error',
-        'single',
-      ],
+      indent: ['error', 2, { SwitchCase: 1 }],
+      quotes: ['error', 'single'],
       'no-else-return': ['error', { allowElseIf: false }],
-      'no-unused-vars': ['error', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false }],
-      'semi': [
-        'error',
-        'always',
-      ],
-    },
+      'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
+      semi: ['error', 'always']
+    }
   }
 ];

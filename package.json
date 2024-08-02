@@ -7,7 +7,11 @@
     "cli",
     "node-cli-temple"
   ],
-  "author": "template-user",
+  "author": {
+    "name": "template-user",
+    "email": "template-user@foo-mail.com",
+    "url": "https://github.com/bridgewwater/node-cli-temple"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
