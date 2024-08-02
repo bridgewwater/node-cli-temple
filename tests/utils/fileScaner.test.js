@@ -12,7 +12,11 @@ test('fileScanner readFileSyncAsJson', () => {
 });
 
 test('fileScanner readFileSyncAsYaml', () => {
-  let asYaml = fileScanner.readFileSyncAsYaml('.travis.yml');
+  let asYaml = fileScanner.readFileSyncAsYaml('.github/dependabot.yml');
   expect(asYaml).not.toBe(NaN);
-  expect(asYaml.language).toEqual('node_js');
+  expect(asYaml.version).toEqual(2);
+  expect(asYaml.updates).not.toBe(NaN);
+  expect(asYaml.updates.length).toEqual(2);
+  expect(asYaml.updates[0]['package-ecosystem']).toEqual('github-actions');
+  expect(asYaml.updates[1]['package-ecosystem']).toEqual('npm');
 });

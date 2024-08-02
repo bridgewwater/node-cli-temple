@@ -87,6 +87,7 @@ depGraph:
 .PHONY: dep
 dep:
 	npm install
+	npm run clean:lockfile
 
 .PHONY: depReInstall
 depReInstall: cleanNpmCache dep

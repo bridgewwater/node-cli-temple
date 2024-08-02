@@ -54,6 +54,6 @@ jobs:
         run: |
           npm run jest:coverage
       -
-        name: Run cli helpe
+        name: Run project target cli help
         run: |
           npm run cli:help
