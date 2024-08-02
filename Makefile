@@ -116,9 +116,9 @@ lintEslint:
 lintEslintNoWarning:
 	npm run lint:eslintNoWarning
 
-.PHONY: test
-test:
-	npm test
+.PHONY: lint
+lint:
+	pnpm run lint
 
 .PHONY: testCoverage
 testCoverage: cleanCoverageOut
@@ -128,6 +128,10 @@ testCoverage: cleanCoverageOut
 testCICoverage: cleanCoverageOut
 	npm run jest:coverage
 	codecov
+
+.PHONY: test
+test:
+	npm test
 
 .PHONY: testAll
 testAll:
@@ -143,7 +147,7 @@ buildIfPresent:
 	npm run build --if-present
 
 .PHONY: ci
-ci: lintEslint test buildIfPresent devHelp
+ci: lint test buildIfPresent devHelp
 
 .PHONY: helpProjectRoot
 helpProjectRoot:

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
+import stylisticEsLint from '@stylistic/eslint-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,25 +14,11 @@ const compat = new FlatCompat({
   allConfig: js.configs.all
 });
 
-const customizedStylistJs = {
-  indent: ['error', 2],
-  'linebreak-style': ['error', 'unix'],
-  quotes: ['error', 'single'],
-
-  'no-else-return': [
-    'error',
-    {
-      allowElseIf: false
-    }
-  ],
-
-  semi: ['error', 'always']
-};
-
 export default [
   {
     plugins: {
-      jest
+      jest,
+      '@stylistic': stylisticEsLint
     }
   },
   ...compat.extends('eslint:recommended', 'plugin:jest/recommended').map((config) => ({
@@ -52,7 +39,24 @@ export default [
     },
 
     rules: {
-      ...customizedStylistJs
-    }
+      'indent': [
+        'error',
+        2,
+      ],
+      'linebreak-style': [
+        'error',
+        'unix',
+      ],
+      'quotes': [
+        'error',
+        'single',
+      ],
+      'no-else-return': ['error', { allowElseIf: false }],
+      'no-unused-vars': ['error', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false }],
+      'semi': [
+        'error',
+        'always',
+      ],
+    },
   }
 ];
