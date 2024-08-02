@@ -10,12 +10,23 @@ updates:
     schedule:
       interval: "monthly"
       day: "sunday"
+    commit-message:
+      prefix: "build(action)"
+      prefix-development: "build(action-dev)"
+      # include: "scope"
     open-pull-requests-limit: 10
+#    ignore:
+#    - dependency-name: foo
+#      versions:
+#      - ">= 2.a, < 3"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "monthly"
       day: "sunday"
+    commit-message:
+      prefix: "build(npm)"
+      prefix-development: "build(npm-dev)"
     open-pull-requests-limit: 10
     ignore:
     - dependency-name: chalk
