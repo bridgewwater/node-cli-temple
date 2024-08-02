@@ -24,12 +24,14 @@
     "cli:help": "node bin/node-cli-temple.js -h",
     "clean:rimraf": "npx rimraf node_modules package-lock.json",
     "clean:lockfile": "npx replace-lockfile-registry --registry https://registry.npmjs.org/",
+    "format:check": "npx prettier --check \"{src,tests}/**/*.{js,vue,ts,tsx}\"",
     "format": "npx prettier --write eslint.config.mjs \"{bin,src,tests}/**/*.{js,vue,ts,tsx}\"",
-    "lint:eslint": "npx eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
+    "lint:eslint": "npx eslint \"{bin,src,tests}/**/*.{js,vue,ts,tsx}\" --max-warnings 0",
+    "lint": "npm run lint:eslint",
     "lint:eslintNoWarning": "npx eslint --cache --max-warnings 0 \"{bin,src,tests}/**/*.{js,vue,ts,tsx}\" --fix",
-    "test": "npx jest --ci",
-    "jest:coverage": "npx jest --ci --coverage",
-    "jest:collectCoverage": "npx jest --collectCoverage --silent"
+    "jest:coverage": "npx jest --ci --coverage --silent",
+    "jest:collectCoverage": "npx jest --collectCoverage --silent",
+    "test": "npx jest --ci"
   },
   "dependencies": {
     "chalk": "4.1.2",
