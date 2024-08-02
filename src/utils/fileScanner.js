@@ -2,7 +2,7 @@ const fs = require('fs');
 const fs_path = require('path');
 const nlog = require('./nlog');
 const lodash = require('lodash');
-const YAML = require('yamljs');
+const YAML = require('js-yaml');
 
 const appendFileSync = function (path, content) {
   if (lodash.isEmpty(path)) {
@@ -89,7 +89,7 @@ const readFileSyncAsYaml = function (path, encoding = 'utf-8') {
   try {
     nlog.debug(`start read sync file as yaml: ${absPath}`);
     let readFileSync = fs.readFileSync(absPath, { encoding: encoding, flag: 'r' });
-    let parse = YAML.parse(readFileSync.toString(encoding));
+    let parse = YAML.load(readFileSync.toString(encoding));
     nlog.debug(`finish read sync file as yaml: ${absPath}`);
     return parse;
   } catch (e) {

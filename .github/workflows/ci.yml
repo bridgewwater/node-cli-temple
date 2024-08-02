@@ -5,13 +5,17 @@ on:
     paths-ignore:
       - '**/README.md'
     branches:
-      - 'main'
+      # - 'main'
       - 'release-*'
-      - 'FE-*'
+      - '*-feature-*'
+      - '*-enhancement-*'
+      - '*-hotfix-*'
+      - '*-bug-*'
+      - '*-documentation-*'
       - 'BF-*'
+      - 'FE-*'
       - 'PU-*'
       - 'DOC-*'
-      - 'hotfix-*'
     tags:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
   pull_request:
@@ -21,11 +25,11 @@ on:
       - opened
       - reopened
       - closed
-    branches:
-      - 'main'
-      - 'release-*'
-      - 'DOC-*'
-      - 'hotfix-*'
+    # branches:
+    #   - 'main'
+    #   - 'release-*'
+    #   - 'DOC-*'
+    #   - 'hotfix-*'
 
 permissions:
   contents: write
