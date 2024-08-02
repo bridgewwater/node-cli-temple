@@ -4,8 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
-import stylisticEsLint from '@stylistic/eslint-plugin';
-import stylisticJs from '@stylistic/eslint-plugin-js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,8 +17,6 @@ export default [
   {
     plugins: {
       jest,
-      '@stylistic': stylisticEsLint,
-      '@stylistic/js': stylisticJs
     }
   },
   ...compat.extends('eslint:recommended', 'plugin:jest/recommended').map((config) => ({
@@ -44,10 +40,6 @@ export default [
       'indent': [
         'error',
         2,
-      ],
-      '@stylistic/js/linebreak-style': [
-        'error',
-        'unix',
       ],
       'quotes': [
         'error',
