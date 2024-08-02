@@ -67,7 +67,7 @@ jobs:
     with:
       tag_name: ${{ needs.version.outputs.tag_name }}
       tag_changes: ${{ needs.version.outputs.cc_changes }}
-      npm_version: ${{ needs.version.outputs.cc-latest-version }}
+      npm_version: ${{ needs.version.outputs.cc_version }}
       # dry-run: false
       # upload_artifact_name: node-release
 
