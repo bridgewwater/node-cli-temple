@@ -108,9 +108,13 @@ upNoInteractive: upCheckUpgrade upDoNpmCheckUpgrade
 up:
 	npx npm-check-updates --interactive --doctor --format group
 
-.PHONY: lint
-lint:
-	npm run lint
+.PHONY: lintEslint
+lintEslint:
+	npm run lint:eslint
+
+.PHONY: lintEslintNoWarning
+lintEslintNoWarning:
+	npm run lint:eslintNoWarning
 
 .PHONY: test
 test:
@@ -139,7 +143,7 @@ buildIfPresent:
 	npm run build --if-present
 
 .PHONY: ci
-ci: buildIfPresent lint test devHelp
+ci: lintEslint test buildIfPresent devHelp
 
 .PHONY: helpProjectRoot
 helpProjectRoot:
@@ -184,6 +188,8 @@ endif
 	@echo "$$ make testCICoverage      ~> run full unit test CI coverage"
 	@echo ""
 	@echo "$$ make style               ~> run style check and auto fix"
+	@echo "$$ make lintEslint          ~> run eslint check"
+	@echo "$$ make lintEslintNoWarning ~> run eslint check no warning and fix"
 	@echo "$$ make ci                  ~> run ci"
 
 .PHONY: devHelp

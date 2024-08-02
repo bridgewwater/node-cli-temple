@@ -35,12 +35,8 @@ jobs:
         name: Install dependencies
         run: |
           npm install
-          # npm ci
+          npm ci
           node -v
-      -
-        name: Build if present
-        run: |
-          npm run build --if-present
       -
         name: Run lint
         run: |
@@ -53,6 +49,10 @@ jobs:
         name: Test coverage
         run: |
           npm run jest:coverage
+      -
+        name: Build if present
+        run: |
+          npm run build --if-present
       -
         name: Run project target cli help
         run: |

@@ -24,8 +24,9 @@
     "cli:help": "node bin/node-cli-temple.js -h",
     "clean:rimraf": "npx rimraf node_modules package-lock.json",
     "clean:lockfile": "npx replace-lockfile-registry --registry https://registry.npmjs.org/",
-    "format": "npx prettier --write src/*.js src/**/*.js src/**/**/*.js tests/**/*.js tests/**/**/*.js",
-    "lint": "npx eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
+    "format": "npx prettier --write eslint.config.mjs \"{bin,src,tests}/**/*.{js,vue,ts,tsx}\"",
+    "lint:eslint": "npx eslint \"bin/**/*.js\" \"src/**/*.js\" \"tests/**/*.js\"",
+    "lint:eslintNoWarning": "npx eslint --cache --max-warnings 0 \"{bin,src,tests}/**/*.{js,vue,ts,tsx}\" --fix",
     "test": "npx jest --ci",
     "jest:coverage": "npx jest --ci --coverage",
     "jest:collectCoverage": "npx jest --collectCoverage --silent"
@@ -43,8 +44,10 @@
     "string-format": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
     "eslint-plugin-jest": "^28.6.0",
+    "globals": "^15.9.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
     "regenerator-runtime": "^0.14.1",
