@@ -76,9 +76,20 @@ install:
 installAll: installUtils installGlobal install
 	@echo "=> install all finish"
 
+.PHONY: depPrune
+depPrune:
+	npm prune
+
+.PHONY: depGraph
+depGraph:
+	npm list -l
+
 .PHONY: dep
-dep: cleanNpmCache install
-	$(info ~> dep finish)
+dep:
+	npm install
+
+.PHONY: depReInstall
+depReInstall: cleanNpmCache dep
 
 .PHONY: upCheckUpgrade
 upCheckUpgrade:
@@ -86,11 +97,15 @@ upCheckUpgrade:
 
 .PHONY: upDoNpmCheckUpgrade
 upDoNpmCheckUpgrade:
-	npx npm-check-updates -u
+	npx npm-check-updates --doctor -u
 	npm install
 
+.PHONY: upNoInteractive
+upNoInteractive: upCheckUpgrade upDoNpmCheckUpgrade
+
 .PHONY: up
-up: upCheckUpgrade upDoNpmCheckUpgrade
+up:
+	npx npm-check-updates --interactive --doctor --format group
 
 .PHONY: lint
 lint:
@@ -143,8 +158,10 @@ ifeq ($(OS),Windows_NT)
 endif
 	@echo "node module makefile template"
 	@echo ""
-	@echo " tips: can install node and install installUtils as"
+	@echo " tips: can install node and install installUtils, not required"
 	@echo "$$ make installUtils        ~> npm install git cz"
+	@echo "$$ make installGlobal       ~> install tools at global, not required"
+	@echo "$$ make installAll          ~> install all include global utils and node_module"
 	@echo "  1. then write git commit log, can replace [ git commit -m ] to [ git cz ]"
 	@echo "  2. generate CHANGELOG.md doc: https://github.com/commitizen/cz-cli#conventional-commit-messages-as-a-global-utility"
 	@echo ""
@@ -152,15 +169,17 @@ endif
 	@echo "$$ make versionHelp         ~> print version when make tageBefore will print again"
 	@echo "$$ make tagBefore           ~> generate CHANGELOG.md and copy to module folder"
 	@echo ""
+	@echo ""
 	@echo " project name         : ${ROOT_NAME}"
 	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
 	@echo ""
-	@echo "Warning: must install node and install module as"
-	@echo "$$ make installGlobal       ~> install must tools at global"
-	@echo "$$ make install             ~> install project"
-	@echo "$$ make installAll          ~> install all include global utils and node_module"
-	@echo "$$ make style               ~> run style check and auto fix"
-	@echo "$$ make up                  ~> check and upgrade all module"
+	@echo "$$ make dep                 ~> install local"
+	@echo "$$ make depPrune            ~> prune node_modules"
+	@echo "$$ make depGraph            ~> show dep graph"
+	@echo "$$ make depReInstall        ~> clean node_modules and install again"
+	@echo "$$ make upCheckUpgrade      ~> check upgrade not do upgrade"
+	@echo "$$ make upNoInteractive     ~> check and upgrade all module no interactive"
+	@echo "$$ make up                  ~> upgrade interactive and try test"
 	@echo ""
 	@echo " unit test as"
 	@echo "$$ make test                ~> only run unit test as change"
@@ -168,7 +187,7 @@ endif
 	@echo "$$ make testCoverage        ~> run full unit test and show coverage"
 	@echo "$$ make testCICoverage      ~> run full unit test CI coverage"
 	@echo ""
-	@echo "$$ make dep                 ~> clean install and install all"
+	@echo "$$ make style               ~> run style check and auto fix"
 	@echo "$$ make ci                  ~> run ci"
 
 .PHONY: help
