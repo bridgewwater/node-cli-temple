@@ -7,11 +7,16 @@ on:
       dry-run:
         description: 'Run npm publish with the --dry-run flag'
         default: false
-        required: false
+        required: true
         type: boolean
       npm_version:
-        description: 'tag name, if not tag will null'
+        description: 'tag name'
         default: ''
+        required: false
+        type: string
+      npm_distribution:
+        description: 'npm distribution see https://docs.npmjs.com/cli/v9/commands/npm-publish#tag'
+        default: 'latest'
         required: false
         type: string
       tag_name:
@@ -24,11 +29,11 @@ on:
         default: ''
         required: false
         type: string
-      upload_artifact_name:
-        description: 'upload artifact name'
-        default: ''
-        required: false
-        type: string
+      # upload_artifact_name:
+      #   description: 'upload artifact name'
+      #   default: ''
+      #   required: false
+      #   type: string
 
 jobs:
   build-upload:
@@ -53,22 +58,22 @@ jobs:
           npm run lint
           npm test
 
-      - name: Check Release archive
-        if: ${{ inputs.upload_artifact_name != null }}
-        run: |
-          echo "release archive at: ${{ env.ASSET }}"
-          echo " archive sha256sum at: ${{ env.ASSET }}.sha256"
+      # - name: Check Release archive
+      #   if: ${{ inputs.upload_artifact_name != null }}
+      #   run: |
+      #     echo "release archive at: ${{ env.ASSET }}"
+      #     echo " archive sha256sum at: ${{ env.ASSET }}.sha256"
 
-      - name: upload-artifact
-        uses: actions/upload-artifact@v4
-        if: ${{ inputs.upload_artifact_name != null }}
-        with:
-          name: ${{ inputs.upload_artifact_name }}
-          retention-days: 5
-          if-no-files-found: error
-          path: |
-            ${{ env.ASSET }}
-            ${{ env.ASSET }}.sha256
+      # - name: upload-artifact
+      #   uses: actions/upload-artifact@v4
+      #   if: ${{ inputs.upload_artifact_name != null }}
+      #   with:
+      #     name: ${{ inputs.upload_artifact_name }}
+      #     retention-days: 5
+      #     if-no-files-found: error
+      #     path: |
+      #       ${{ env.ASSET }}
+      #       ${{ env.ASSET }}.sha256
 
   publish-npm:
     needs:
@@ -88,8 +93,7 @@ jobs:
           node -v
 
       - uses: JS-DevTools/npm-publish@v3
-        if: ${{ inputs.npm_version != null }}
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ inputs.npm_version }}
+          tag: ${{ inputs.npm_distribution }}
           dry-run: ${{ inputs.dry-run }}
