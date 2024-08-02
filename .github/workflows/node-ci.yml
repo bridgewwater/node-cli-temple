@@ -53,3 +53,7 @@ jobs:
         name: Test coverage
         run: |
           npm run jest:coverage
+      -
+        name: Run cli helpe
+        run: |
+          npm run cli:help

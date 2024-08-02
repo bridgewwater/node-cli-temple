@@ -138,12 +138,7 @@ buildIfPresent:
 	npm run build --if-present
 
 .PHONY: ci
-ci: buildIfPresent lint test
-
-.PHONY: devHelp
-devHelp:
-	npm run cli:help
-
+ci: buildIfPresent lint test devHelp
 
 .PHONY: helpProjectRoot
 helpProjectRoot:
@@ -190,7 +185,13 @@ endif
 	@echo "$$ make style               ~> run style check and auto fix"
 	@echo "$$ make ci                  ~> run ci"
 
+.PHONY: devHelp
+devHelp:
+	npm run cli:help
+
 .PHONY: help
 help: helpProjectRoot
 	@echo ""
 	@echo "-- more info see Makefile --"
+	@echo ""
+	@echo "$$ make devHelp             ~> show cli help"

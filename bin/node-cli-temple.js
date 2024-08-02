@@ -1,13 +1,17 @@
 #! /usr/bin/env node
 
-const program = require('commander');
+const { Command } = require('commander');
+const program = new Command();
 const moment = require('moment');
 const shell = require('shelljs');
 const nlog = require('../src/utils/nlog');
 const config = require('../src/config');
 const {pkgInfo, binName} = require('../src/utils/pkgInfo');
 
-program.version(pkgInfo.version, '--version', 'output the current version');
+// program.version(pkgInfo.version, '--version', 'output the current version');
+program
+  .name(binName)
+  .version(pkgInfo.version);
 
 program.option('-v, --verbose', '[-|+] see verbose', false)
   .on('option:verbose', function () {
