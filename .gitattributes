@@ -21,6 +21,7 @@
 *.yaml  text eol=lf
 *.vue  text eol=lf
 *.golden  text eol=lf
+*.go  text eol=lf
 *.mod  text eol=lf
 *.sum  text eol=lf
 
@@ -47,6 +48,7 @@
 ###############################################################################
 *.jpg   binary
 *.png   binary
+*.webp   binary
 *.gif   binary
 *.lib   binary
 *.dll   binary
