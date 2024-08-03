@@ -34,9 +34,9 @@ jobs:
       -
         name: Install dependencies
         run: |
+          node -v
           npm install
           npm ci
-          node -v
       -
         name: Run lint
         run: |
