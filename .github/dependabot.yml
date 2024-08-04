@@ -29,6 +29,9 @@ updates:
       prefix-development: "build(npm-dev)"
     open-pull-requests-limit: 10
     ignore:
-    - dependency-name: chalk
-#      versions:
-#      - ">= 2.a, < 3"
+    - dependency-name: chalk # latest version support CJS module is v4
+      versions:
+      - ">= 5.0"
+    - dependency-name: inquirer # latest version support CJS module is v8
+      versions:
+      - ">= 9.0"
