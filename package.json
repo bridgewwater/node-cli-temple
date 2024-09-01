@@ -50,7 +50,7 @@
     "string-format": "^2.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.8.0",
+    "@eslint/js": "^9.9.1",
     "eslint": "^9.8.0",
     "eslint-plugin-jest": "^28.8.1",
     "globals": "^15.9.0",
