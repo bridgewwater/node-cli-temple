@@ -59,7 +59,7 @@
     "regenerator-runtime": "^0.14.1",
     "replace-lockfile-registry": "^0.0.2",
     "rimraf": "6.0.1",
-    "semver": "^7.6.3"
+    "semver": "^7.7.0"
   },
   "engines": {
     "node": ">=18.0.0"
