@@ -1,41 +1,17 @@
 {
-  "version": "1.0.0",
   "name": "node-cli-temple",
   "description": "node-cli-temple",
-  "keywords": [
-    "node",
-    "cli",
-    "node-cli-temple"
-  ],
+  "version": "1.0.0",
   "author": {
     "name": "template-user",
     "email": "template-user@foo-mail.com",
     "url": "https://github.com/bridgewwater/node-cli-temple"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
-  },
-  "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
-  "bugs": {
-    "url": "https://github.com/bridgewwater/node-cli-temple/issues"
-  },
   "bin": {
     "node-cli-temple": "./bin/node-cli-temple.js"
   },
-  "scripts": {
-    "cli:help": "node bin/node-cli-temple.js -h",
-    "clean:rimraf": "npx rimraf node_modules package-lock.json",
-    "clean:lockfile": "npx replace-lockfile-registry --registry https://registry.npmjs.org/",
-    "format:check": "npx prettier --check \"{src,tests}/**/*.{js,mjs,vue,ts,tsx}\"",
-    "format": "npx prettier --write eslint.config.mjs \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\"",
-    "lint:eslint": "npx eslint \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\" --max-warnings 0",
-    "lint": "npm run lint:eslint",
-    "lint:eslintNoWarning": "npx eslint --cache --max-warnings 0 \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\" --fix",
-    "jest:coverage": "npx jest --ci --coverage --silent",
-    "jest:collectCoverage": "npx jest --collectCoverage --silent",
-    "test": "npx jest --ci"
+  "bugs": {
+    "url": "https://github.com/bridgewwater/node-cli-temple/issues"
   },
   "dependencies": {
     "chalk": "4.1.2",
@@ -63,5 +39,29 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
+  "keywords": [
+    "cli",
+    "node",
+    "node-cli-temple"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bridgewwater/node-cli-temple.git"
+  },
+  "scripts": {
+    "clean:lockfile": "npx replace-lockfile-registry --registry https://registry.npmjs.org/",
+    "clean:rimraf": "npx rimraf node_modules package-lock.json",
+    "cli:help": "node bin/node-cli-temple.js -h",
+    "format": "npx prettier --write eslint.config.mjs \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\"",
+    "format:check": "npx prettier --check \"{src,tests}/**/*.{js,mjs,vue,ts,tsx}\"",
+    "jest:collectCoverage": "npx jest --collectCoverage --silent",
+    "jest:coverage": "npx jest --ci --coverage --silent",
+    "lint": "npm run lint:eslint",
+    "lint:eslint": "npx eslint \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\" --max-warnings 0",
+    "lint:eslintNoWarning": "npx eslint --cache --max-warnings 0 \"{bin,src,tests}/**/*.{js,mjs,vue,ts,tsx}\" --fix",
+    "test": "npx jest --ci"
   }
 }
