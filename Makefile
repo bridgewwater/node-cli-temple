@@ -26,62 +26,32 @@ env:
 	@echo "ENV_COVERAGE_OUT_FOLDER                   ${ENV_COVERAGE_OUT_FOLDER}"
 	@echo "== project env info end =="
 
-.PHONY: cleanCoverageOut
-cleanCoverageOut:
+.PHONY: clean.coverage.out
+clean.coverage.out:
 	@$(RM) -r ${ENV_COVERAGE_OUT_FOLDER}
 	$(info ~> has cleaned ${ENV_COVERAGE_OUT_FOLDER})
 
-.PHONY: cleanNpmCache
-cleanNpmCache:
+.PHONY: clean.npm.cache
+clean.npm.cache:
 	@$(RM) -r ${ENV_NODE_MODULES_FOLDER}
 	$(info ~> has cleaned ${ENV_NODE_MODULES_FOLDER})
 	@$(RM) ${ENV_NODE_MODULES_LOCK_FILE}
 	$(info ~> has cleaned ${ENV_NODE_MODULES_LOCK_FILE})
 
-.PHONY: cleanAll
-cleanAll: cleanCoverageOut cleanNpmCache
+.PHONY: clean.all
+clean.all: clean.coverage.out clean.npm.cache
 	@echo "=> clean all finish"
-
-.PHONY: installUtils
-installUtils:
-	node -v
-	npm -v
-	npm install -g commitizen cz-conventional-changelog conventional-changelog-cli npm-check-updates standard-version
-
-versionHelp:
-	@git fetch --tags
-	@echo "project base info"
-	@echo " project name         : ${ROOT_NAME}"
-	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
-	@echo ""
-	@echo "=> please check to change version, now is [ ${ENV_DIST_VERSION} ]"
-	@echo "-> check at: ${ENV_MODULE_MANIFEST}:3"
-
-tagBefore: versionHelp
-	@cd ${ENV_MODULE_FOLDER} && conventional-changelog -i ${ENV_MODULE_CHANGELOG} -s --skip-unstable
-	@echo ""
-	@echo "=> new CHANGELOG.md at: ${ENV_MODULE_CHANGELOG}"
-	@echo "place check all file, then can add tag like this!"
-	@echo "$$ git tag -a '${ENV_DIST_VERSION}' -m 'message for this tag'"
-
-.PHONY: installGlobal
-installGlobal:
-	npm install --global rimraf
 
 .PHONY: install
 install:
 	npm install
 
-.PHONY: installAll
-installAll: installUtils installGlobal install
-	@echo "=> install all finish"
-
-.PHONY: depPrune
-depPrune:
+.PHONY: dep.prune
+dep.prune:
 	npm prune
 
-.PHONY: depGraph
-depGraph:
+.PHONY: dep.graph
+dep.graph:
 	npm list -l
 
 .PHONY: dep
@@ -89,43 +59,43 @@ dep:
 	npm install
 	npm run clean:lockfile
 
-.PHONY: depReInstall
-depReInstall: cleanNpmCache dep
+.PHONY: dep.reinstall
+dep.reinstall: clean.npm.cache dep
 
-.PHONY: upCheckUpgrade
-upCheckUpgrade:
+.PHONY: up.check.upgrade
+up.check.upgrade:
 	npx npm-check-updates
 
-.PHONY: upDoNpmCheckUpgrade
-upDoNpmCheckUpgrade:
-	npx npm-check-updates --doctor -u
+.PHONY: up.do.npm.check.upgrade
+up.do.npm.check.upgrade:
+	npx npm-check-updates -u --doctor
 	npm install
 
 .PHONY: upNoInteractive
-upNoInteractive: upCheckUpgrade upDoNpmCheckUpgrade
+upNoInteractive: up.check.upgrade up.do.npm.check.upgrade
 
 .PHONY: up
 up:
-	npx npm-check-updates --interactive --doctor --format group
+	npx npm-check-updates --interactive --format group --doctor
 
-.PHONY: lintEslint
-lintEslint:
+.PHONY: lint.eslint
+lint.eslint:
 	npm run lint:eslint
 
-.PHONY: lintEslintNoWarning
-lintEslintNoWarning:
+.PHONY: lint.eslint.no.warning
+lint.eslint.no.warning:
 	npm run lint:eslintNoWarning
 
 .PHONY: lint
 lint:
 	pnpm run lint
 
-.PHONY: testCoverage
-testCoverage: cleanCoverageOut
+.PHONY: test.coverage
+test.coverage: clean.coverage.out
 	npm run jest:collectCoverage
 
-.PHONY: testCICoverage
-testCICoverage: cleanCoverageOut
+.PHONY: test.ci.coverage
+test.ci.coverage: clean.coverage.out
 	npm run jest:coverage
 	codecov
 
@@ -141,13 +111,17 @@ testAll:
 style:
 	npm run format
 
-.PHONY: buildIfPresent
-buildIfPresent:
+.PHONY: build.if.present
+build.if.present:
 	npm ci
 	npm run build --if-present
 
+.PHONY: dev.help
+dev.help:
+	npm run cli:help
+
 .PHONY: ci
-ci: lint test buildIfPresent devHelp
+ci: lint test build.if.present dev.help
 
 .PHONY: helpProjectRoot
 helpProjectRoot:
@@ -162,47 +136,31 @@ ifeq ($(OS),Windows_NT)
 endif
 	@echo "node module makefile template"
 	@echo ""
-	@echo " tips: can install node and install installUtils, not required"
-	@echo "$$ make installUtils        ~> npm install git cz"
-	@echo "$$ make installGlobal       ~> install tools at global, not required"
-	@echo "$$ make installAll          ~> install all include global utils and node_module"
-	@echo "  1. then write git commit log, can replace [ git commit -m ] to [ git cz ]"
-	@echo "  2. generate CHANGELOG.md doc: https://github.com/commitizen/cz-cli#conventional-commit-messages-as-a-global-utility"
+	@echo " project name                    : ${ROOT_NAME}"
+	@echo " module folder path              : ${ENV_MODULE_FOLDER}"
 	@echo ""
-	@echo "  then you can generate CHANGELOG.md as"
-	@echo "$$ make versionHelp         ~> print version when make tageBefore will print again"
-	@echo "$$ make tagBefore           ~> generate CHANGELOG.md and copy to module folder"
-	@echo ""
-	@echo ""
-	@echo " project name         : ${ROOT_NAME}"
-	@echo " module folder path   : ${ENV_MODULE_FOLDER}"
-	@echo ""
-	@echo "$$ make dep                 ~> install local"
-	@echo "$$ make depPrune            ~> prune node_modules"
-	@echo "$$ make depGraph            ~> show dep graph"
-	@echo "$$ make depReInstall        ~> clean node_modules and install again"
-	@echo "$$ make upCheckUpgrade      ~> check upgrade not do upgrade"
-	@echo "$$ make upNoInteractive     ~> check and upgrade all module no interactive"
-	@echo "$$ make up                  ~> upgrade interactive and try test"
+	@echo "$$ make dep                      ~> install local"
+	@echo "$$ make dep.prune                ~> prune node_modules"
+	@echo "$$ make dep.graph                ~> show dep graph"
+	@echo "$$ make dep.reinstall            ~> clean node_modules and install again"
+	@echo "$$ make up.check.upgrade         ~> check upgrade not do upgrade"
+	@echo "$$ make upNoInteractive          ~> check and upgrade all module no interactive"
+	@echo "$$ make up                       ~> upgrade interactive and try test"
 	@echo ""
 	@echo " unit test as"
-	@echo "$$ make test                ~> only run unit test as change"
-	@echo "$$ make testAll             ~> run full unit test"
-	@echo "$$ make testCoverage        ~> run full unit test and show coverage"
-	@echo "$$ make testCICoverage      ~> run full unit test CI coverage"
+	@echo "$$ make test                     ~> only run unit test as change"
+	@echo "$$ make testAll                  ~> run full unit test"
+	@echo "$$ make test.coverage            ~> run full unit test and show coverage"
+	@echo "$$ make test.ci.coverage         ~> run full unit test CI coverage"
 	@echo ""
-	@echo "$$ make style               ~> run style check and auto fix"
-	@echo "$$ make lintEslint          ~> run eslint check"
-	@echo "$$ make lintEslintNoWarning ~> run eslint check no warning and fix"
-	@echo "$$ make ci                  ~> run ci"
-
-.PHONY: devHelp
-devHelp:
-	npm run cli:help
+	@echo "$$ make style                    ~> run style check and auto fix"
+	@echo "$$ make lint.eslint              ~> run eslint check"
+	@echo "$$ make lint.eslint.no.warning   ~> run eslint check no warning and fix"
+	@echo "$$ make ci                       ~> run ci"
 
 .PHONY: help
 help: helpProjectRoot
 	@echo ""
 	@echo "-- more info see Makefile --"
 	@echo ""
-	@echo "$$ make devHelp             ~> show cli help"
+	@echo "$$ make dev.help                 ~> show cli help"
