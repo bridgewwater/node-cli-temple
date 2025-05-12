@@ -38,7 +38,7 @@
     "semver": "^7.7.1"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0"
   },
   "homepage": "https://github.com/bridgewwater/node-cli-temple#readme",
   "keywords": [
