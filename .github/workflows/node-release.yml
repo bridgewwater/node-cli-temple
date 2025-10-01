@@ -92,7 +92,7 @@ jobs:
           npm install
           node -v
 
-      - uses: JS-DevTools/npm-publish@v3
+      - uses: JS-DevTools/npm-publish@v4
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: ${{ inputs.npm_distribution }}
