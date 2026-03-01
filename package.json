@@ -34,7 +34,7 @@
     "prettier": "^3.8.1",
     "regenerator-runtime": "^0.14.1",
     "replace-lockfile-registry": "^0.0.2",
-    "rimraf": "6.1.2",
+    "rimraf": "6.1.3",
     "semver": "^7.7.4"
   },
   "engines": {
