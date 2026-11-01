@@ -20,7 +20,7 @@
     "js-yaml": "^4.2.0",
     "lodash": "^4.18.1",
     "log4js": "^6.9.1",
-    "minimatch": "^10.2.6",
+    "minimatch": "^11.0.3",
     "moment": "^2.31.0",
     "shelljs": "^0.10.0",
     "string-format": "^2.0.0"
